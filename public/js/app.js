@@ -1,7 +1,8 @@
 console.log("app js loaded");
 
-//fetch a url directly
+// fetch a url directly
 fetch('/weather?address=boston').then((response)=>{
+    console.log(response);
     response.json().then((data)=>{
         if(data.error){
             console.log(data.error);
@@ -11,7 +12,7 @@ fetch('/weather?address=boston').then((response)=>{
         
     });
 });
-
+// /*
 const weatherForm = document.querySelector('form');
 const search = document.querySelector('input');
 const messageOne = document.querySelector('#message-1');
@@ -24,22 +25,24 @@ weatherForm.addEventListener('submit', (e)=>{
     
     messageOne.textContent = "Loading.....";
     messageTwo.textContent = "";
-    fetch('http://localhost:3000/weather?address=' + search.value).then((response)=>{
-    response.json().then((data)=>{
-        if(data.error){
-            console.log(data.error);
-            messageOne.textContent = data.error;
-            messageTwo.textContent = "";
+    console.log(search.value);
+    fetch('/weather?address=' + search.value).then((response)=>{
+        console.log(response);
+        response.json().then((data)=>{
+            if(data.error){
+                console.log(data.error);
+                messageOne.textContent = data.error;
+                messageTwo.textContent = "";
 
-        }else{
-            messageOne.textContent = "for location " + data.location;
-            messageTwo.textContent = "current temperature is "+ data.forecast.temperature + " and weather is " + data.forecast.weather;
-            console.log(data);    
-        }
-        
+            }else{
+                messageOne.textContent = "for location " + data.location;
+                messageTwo.textContent = "current temperature is "+ data.forecast.temperature + " and weather is " + data.forecast.weather;
+                console.log(data);    
+            }
+            
+        });
     });
-});
 
 
-});
+});//*/
     
